@@ -7,12 +7,13 @@ const calculate = () => {
     const median = getMedian(numbers);
     const mode = getMode(numbers);
     const range = getRange(numbers);
+    const variance = getVariance(numbers);
 
     document.querySelector('#mean').textContent = mean;
     document.querySelector('#median').textContent = median;
     document.querySelector('#mode').textContent = mode;
     document.querySelector('#range').textContent = range;
-    
+    document.querySelector('#variance').textContent = variance;
 }
 
 const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length;
@@ -44,4 +45,14 @@ const getMode = (array) => {
 
   const getRange = (array) => {
     return Math.max(...array) - Math.min(...array);
+  }
+
+  const getVariance = (array) => {
+    const mean = getMean(array);
+    const variance = array.reduce((acc, el) => {
+      const difference = el - mean;
+      const squared = difference ** 2;
+      return acc + squared;
+    }, 0) / array.length;
+    return variance;
   }
