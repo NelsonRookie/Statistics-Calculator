@@ -6,10 +6,12 @@ const calculate = () => {
     const mean  = getMean(numbers);
     const median = getMedian(numbers);
     const mode = getMode(numbers);
+    const range = getRange(numbers);
 
     document.querySelector('#mean').textContent = mean;
     document.querySelector('#median').textContent = median;
     document.querySelector('#mode').textContent = mode;
+    document.querySelector('#range').textContent = range;
     
 }
 
@@ -38,4 +40,8 @@ const getMode = (array) => {
       (el) => counts[el] === counts[highest]
     );
     return mode.join(", ");
+  }
+
+  const getRange = (array) => {
+    return Math.max(...array) - Math.min(...array);
   }
